@@ -1,23 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const tasks = ref([
-  {
-    id: 1,
-    title: 'matmatics',
-    completed: false
-  },
-  {
-    id: 2,
-    title: 'pemrograman',
-    completed: false
-  },
-  {
-    id: 3,
-    title: 'bahasa inggris',
-    completed: false
-  }
-])
+const tasks = ref([])
 const newTask = ref('')
 
 const addTask = () => {
