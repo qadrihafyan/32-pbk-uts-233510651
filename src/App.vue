@@ -34,34 +34,108 @@ const filteredTasks = computed(() => {
 </script>
 
 <template>
-  <div class="flex p-3 min-w-screen min-h-screen bg-amber-50">
-    <!-- Left Content -->
-    <div class="flex flex-col w-1/3 bg-white rounded-lg shadow-lg p-4 gap-5">
-      <h1 class="w-full text-center text-2xl">Judul Header</h1>
-      <div class="flex items-center justify-center gap-4 w-full">
-        <input type="text" v-model="newTask" @keyup.enter="addTask" />
-        <button @click="addTask">Add Task</button>
+  <div class="flex p-6 min-h-screen bg-gray-900 text-white gap-6 items-center">
+    <!-- Sidebar -->
+    <div class="flex flex-col w-[320px] h-full bg-gray-800 rounded-lg shadow-xl p-6 gap-6">
+      <h1 class="text-center text-3xl font-bold tracking-wide">📋 Task Manager</h1>
+
+      <!-- Input -->
+      <div class="flex items-center gap-4">
+        <input
+          type="text"
+          v-model="newTask"
+          @keyup.enter="addTask"
+          placeholder="New task..."
+          class="flex-1 px-4 py-2 rounded bg-gray-700 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+        <button
+          @click="addTask"
+          class="bg-blue-600 hover:bg-blue-700 transition px-4 py-2 rounded shadow text-white"
+        >
+          ➕
+        </button>
       </div>
-      <div class="flex flex-col gap-5 mt-5 ">
-        <button @click="filter = 'all'">Semua</button>
-        <button @click="filter = 'active'">Active</button>
-        <button @click="filter = 'completed'">Completed</button>
+
+      <!-- Filter -->
+      <div class="flex flex-col gap-2">
+        <button
+          @click="filter = 'all'"
+          class="bg-gray-700 hover:bg-gray-600 rounded px-4 py-2 transition"
+        >
+          ☰ Semua
+        </button>
+        <button
+          @click="filter = 'active'"
+          class="bg-gray-700 hover:bg-gray-600 rounded px-4 py-2 transition"
+        >
+          🕒 Active
+        </button>
+        <button
+          @click="filter = 'completed'"
+          class="bg-gray-700 hover:bg-gray-600 rounded px-4 py-2 transition"
+        >
+          ✅ Completed
+        </button>
       </div>
     </div>
 
-    <!-- Right Content -->
-    <div>
-      <ul>
-        <li v-for="task in filteredTasks" :key="task.id">
-          <input type="checkbox" v-model="task.completed" />
-          <span :class="task.completed ? 'line-through text-gray-500' : ''">
-            {{ task.title }} - {{ task.completed }}
-          </span>
-          <button @click="removeTask(task)">Remove</button>
+    <!-- Task List -->
+    <div class="flex-1 h-130 bg-gray-800 rounded-lg shadow-xl p-6 overflow-hidden">
+      <h2 class="text-2xl font-semibold mb-4">📝 Daftar Tugas</h2>
+      <ul class="space-y-4 h-100 overflow-y-auto pr-2">
+        <li
+          v-for="task in filteredTasks"
+          :key="task.id"
+          class="flex items-center justify-between bg-gray-700 p-4 rounded transition-transform duration-300 hover:scale-[1.01]"
+        >
+          <div class="flex items-center gap-3">
+            <input
+              type="checkbox"
+              v-model="task.completed"
+              class="w-5 h-5 accent-green-500"
+            />
+            <span
+              :class="task.completed ? 'line-through text-gray-400' : 'text-white'"
+              class="text-lg"
+            >
+              {{ task.title }}
+            </span>
+          </div>
+          <button
+            @click="removeTask(task)"
+            class="text-red-400 hover:text-red-600 transition"
+            title="Remove"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
         </li>
       </ul>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* Tambahan animasi masuk jika ingin */
+li {
+  animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
