@@ -32,7 +32,9 @@ const addTask = () => {
       <ul>
         <li v-for="task in tasks" :key="task.id">
           <input type="checkbox" v-model="task.completed"/>
-          {{ task.title }} - {{ task.completed }}
+          <span :class="task.completed ? 'line-through text-gray-500' : ''">
+            {{ task.title }} - {{ task.completed }}
+          </span>
         </li>
       </ul>
     </div>
