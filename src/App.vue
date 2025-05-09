@@ -34,12 +34,15 @@ const filteredTasks = computed(() => {
 </script>
 
 <template>
-  <div>
+  <div class="flex p-3 min-w-screen min-h-screen bg-amber-50">
     <!-- Left Content -->
-    <div>
-      <input type="text" v-model="newTask" @keyup.enter="addTask" />
-      <button @click="addTask">Add Task</button>
-      <div>
+    <div class="flex flex-col w-1/3 bg-white rounded-lg shadow-lg p-4 gap-5">
+      <h1 class="w-full text-center text-2xl">Judul Header</h1>
+      <div class="flex items-center justify-center gap-4 w-full">
+        <input type="text" v-model="newTask" @keyup.enter="addTask" />
+        <button @click="addTask">Add Task</button>
+      </div>
+      <div class="flex flex-col gap-5 mt-5 ">
         <button @click="filter = 'all'">Semua</button>
         <button @click="filter = 'active'">Active</button>
         <button @click="filter = 'completed'">Completed</button>
