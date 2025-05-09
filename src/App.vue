@@ -17,10 +17,6 @@ const addTask = () => {
   console.log(tasks.value)
 }
 
-const toggleeTask = (task) => {
-  console.log(task.completed)
-}
-
 </script>
 
 <template>
@@ -35,7 +31,7 @@ const toggleeTask = (task) => {
     <div>
       <ul>
         <li v-for="task in tasks" :key="task.id">
-          <input type="checkbox" v-model="task.completed" @change="toggleeTask(task)" />
+          <input type="checkbox" v-model="task.completed"/>
           {{ task.title }} - {{ task.completed }}
         </li>
       </ul>
