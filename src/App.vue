@@ -22,11 +22,11 @@ const tasks = ref([
 
 <template>
   <div>
-    <u>
+    <ul>
       <li v-for="task in tasks" :key="task.id">
         {{ task.title }} - {{ task.completed }}
       </li>
-    </u>
+    </ul>
   </div>
 </template>
 
